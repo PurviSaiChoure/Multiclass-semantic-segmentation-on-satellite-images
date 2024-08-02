@@ -23,7 +23,7 @@ import random
 # In[2]:
 
 
-temp_img = cv2.imread("Downloads/S/images/1.jpg") 
+temp_img = cv2.imread("Downloads/seg/images/1.jpg") 
 
 
 # In[3]:
@@ -35,7 +35,7 @@ plt.imshow(temp_img[:,:,0])
 # In[7]:
 
 
-temp_mask = cv2.imread("Downloads/S/masks/8.png")  
+temp_mask = cv2.imread("Downloads/seg/masks/8.png")  
 labels, count = np.unique(temp_mask[:,:,0], return_counts=True) 
 print("Labels are: ", labels, " and the counts are: ", count)
 
@@ -47,7 +47,7 @@ import os
 import cv2
 import numpy as np
 
-mask_dir = "Downloads/S/masks/"
+mask_dir = "Downloads/seg/masks/"
 
 mask_files = os.listdir(mask_dir)
 unique_values_set = set()
@@ -76,14 +76,14 @@ plt.show()
 import cv2
 import numpy as np
 
-temp_mask = cv2.imread("Downloads/S/masks/15.png", cv2.IMREAD_GRAYSCALE)
+temp_mask = cv2.imread("Downloads/seg/masks/15.png", cv2.IMREAD_GRAYSCALE)
 print(temp_mask.shape)
 
 
 # In[11]:
 
 
-temp_mask = cv2.imread("Downloads/S/masks/22.png") 
+temp_mask = cv2.imread("Downloads/seg/masks/22.png") 
 labels, count = np.unique(temp_mask[:,:,0], return_counts=True) 
 print("Labels are: ", labels, " and the counts are: ", count)
 
@@ -91,7 +91,7 @@ print("Labels are: ", labels, " and the counts are: ", count)
 # In[12]:
 
 
-root_directory = 'Downloads/S'
+root_directory = 'Downloads/seg'
 
 patch_size = 256 
 img_dir=root_directory+"images"
@@ -146,7 +146,7 @@ for path, subdirs, files in os.walk(mask_dir):
 # In[13]:
 
 
-root_directory = 'Downloads/S/'
+root_directory = 'Downloads/seg/'
 patch_size = 256
 img_dir = root_directory + "images/"
 output_dir = root_directory + "256_patches/images/"
@@ -214,8 +214,8 @@ for path, subdirs, files in os.walk(mask_dir):
 # In[15]:
 
 
-train_img_dir = "Downloads/S/256_patches/images/"
-train_mask_dir = "Downloads/S/256_patches/masks/"
+train_img_dir = "Downloads/seg/256_patches/images/"
+train_mask_dir = "Downloads/seg/256_patches/masks/"
 
 img_list = os.listdir(train_img_dir)
 msk_list = os.listdir(train_mask_dir)
@@ -256,8 +256,8 @@ for img in range(len(img_list)):
     
     if (1 - (counts[0]/counts.sum())) > 0.05:  
         print("Save Me")
-        cv2.imwrite('Downloads/S/256_patches/images_with_useful_info/images/'+img_name, temp_image)
-        cv2.imwrite('Downloads/S/256_patches/images_with_useful_info/masks/'+mask_name, temp_mask)
+        cv2.imwrite('Downloads/seg/256_patches/images_with_useful_info/images/'+img_name, temp_image)
+        cv2.imwrite('Downloads/seg/256_patches/images_with_useful_info/masks/'+mask_name, temp_mask)
         
     else:
         print("I am useless")   
@@ -275,14 +275,14 @@ import cv2
 import numpy as np
 
 useless = 0
-train_img_dir = "Downloads/S/256_patches/images/"
-train_mask_dir = "Downloads/S/256_patches/masks/"
+train_img_dir = "Downloads/seg/256_patches/images/"
+train_mask_dir = "Downloads/seg/256_patches/masks/"
 
 img_list = os.listdir(train_img_dir)
 msk_list = os.listdir(train_mask_dir)
 
-output_img_dir = 'Downloads/S/256_patches/images_with_useful_info/images/'
-output_mask_dir = 'Downloads/S/256_patches/images_with_useful_info/masks/'
+output_img_dir = 'Downloads/seg/256_patches/images_with_useful_info/images/'
+output_mask_dir = 'Downloads/seg/256_patches/images_with_useful_info/masks/'
 
 os.makedirs(output_img_dir, exist_ok=True)
 os.makedirs(output_mask_dir, exist_ok=True)
@@ -322,8 +322,8 @@ import splitfolders
 # In[19]:
 
 
-input_folder = 'Downloads/S/256_patches/images_with_useful_info/'
-output_folder = 'Downloads/S/data_for_training_and_testing/'
+input_folder = 'Downloads/seg/256_patches/images_with_useful_info/'
+output_folder = 'Downloads/seg/data_for_training_and_testing/'
 splitfolders.ratio(input_folder, output=output_folder, seed=42, ratio=(.75, .25), group_prefix=None) 
 
 
